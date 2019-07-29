@@ -273,6 +273,11 @@ public class telaCliente extends javax.swing.JFrame {
         });
 
         btnPesquisaNomeDadosPessoais.setText("Pesquisar");
+        btnPesquisaNomeDadosPessoais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaNomeDadosPessoaisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelDadosPessoaisLayout = new javax.swing.GroupLayout(painelDadosPessoais);
         painelDadosPessoais.setLayout(painelDadosPessoaisLayout);
@@ -761,6 +766,10 @@ public class telaCliente extends javax.swing.JFrame {
         });
     }
     }//GEN-LAST:event_txtNomeConsultaClienteKeyPressed
+
+    private void btnPesquisaNomeDadosPessoaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaNomeDadosPessoaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisaNomeDadosPessoaisActionPerformed
 
     /**
      * @param args the command line arguments

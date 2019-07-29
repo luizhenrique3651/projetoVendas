@@ -18,7 +18,7 @@ public class ModuloConexao {
     
         try {
            
-            return DriverManager.getConnection("jdbc:mysql://localhost/BDVENDAS", "luiz", "luiz123");
+            return DriverManager.getConnection("jdbc:mysql://localhost/BDVENDAS?useSSL=true", "luiz", "luiz123");
             
             
         } catch (Exception e) {
