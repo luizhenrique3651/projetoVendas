@@ -34,7 +34,8 @@ public class ClientesDAO {
         try {
             
             String sql = "insert into tb_clientes (nome, rg, cpf, email, "
-                    + "telefone, celular, cep, endereco, numero, complemento, bairro, cidade, estado)"
+                    + "telefone, celular, cep, endereco, numero, complemento, "
+                    + "bairro, cidade, estado)"
                     + "values (?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, obj.getNome());
@@ -76,13 +77,79 @@ public class ClientesDAO {
     
     
     
-    public void alterarCliente(){
+    public void alterarCliente(Clientes obj){
+        
+           try {
+            
+            String sql = "update tb_clientes set nome=?, rg=?, cpf=?, email=?, "
+                    + "telefone=?, celular=?, cep=?, endereco=?, numero=?, "
+                    + "complemento=?, bairro=?"
+                    + ", cidade=?, estado=? where id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, obj.getNome());
+            pst.setString(2, obj.getRg());
+            pst.setString(3, obj.getCpf());
+            pst.setString(4, obj.getEmail());
+            pst.setString(5, obj.getTelefone());
+            pst.setString(6, obj.getCelular());
+            pst.setString(7, obj.getCep());
+            pst.setString(8, obj.getEndereco());
+            pst.setInt(9, obj.getNumero());
+            pst.setString(10, obj.getComplemento());
+            pst.setString(11, obj.getBairro());
+            pst.setString(12, obj.getCidade());
+            pst.setString(13, obj.getUf());
+            pst.setInt(14,obj.getId());
+            
+            pst.execute();
+            pst.close();
+            
+            
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            
+            
+            
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+        
+        
+        }
+        
     }
     
     
     
     
-    public void excluirCliente(){
+    public void excluirCliente(Clientes obj){
+         try {
+            
+            String sql = "delete from tb_clientes where id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, obj.getId());
+            
+            pst.execute();
+            pst.close();
+            
+            
+            JOptionPane.showMessageDialog(null, "excluido com sucesso!");
+            
+            
+            
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+        
+        
+        }
     }
     
     
