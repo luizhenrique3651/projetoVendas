@@ -100,7 +100,7 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtComplementoDados = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        painelConsultaClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDeClientes = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
@@ -414,6 +414,11 @@ public class telaCliente extends javax.swing.JFrame {
                 "Código", "Nome", "RG", "CPF", "Email", "Telefone", "Celular", "CEP", "Endereço", "Número", "Comp.", "Bairro", "Cidade", "UF"
             }
         ));
+        tabelaDeClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaDeClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaDeClientes);
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -427,11 +432,11 @@ public class telaCliente extends javax.swing.JFrame {
 
         btnPesquisaCliente.setText("Pesquisar");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelConsultaClientesLayout = new javax.swing.GroupLayout(painelConsultaClientes);
+        painelConsultaClientes.setLayout(painelConsultaClientesLayout);
+        painelConsultaClientesLayout.setHorizontalGroup(
+            painelConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelConsultaClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -441,20 +446,20 @@ public class telaCliente extends javax.swing.JFrame {
                 .addContainerGap(888, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        painelConsultaClientesLayout.setVerticalGroup(
+            painelConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultaClientesLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(painelConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel14)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(painelConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNomeConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnPesquisaCliente)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        painelDaTabelaClientes.addTab("Consulta de clientes", jPanel3);
+        painelDaTabelaClientes.addTab("Consulta de clientes", painelConsultaClientes);
 
         btnSalvarCadCli.setText("SALVAR");
         btnSalvarCadCli.addActionListener(new java.awt.event.ActionListener() {
@@ -592,11 +597,48 @@ public class telaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoCadCliActionPerformed
 
     private void btnExcluirCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCadCliActionPerformed
-        // TODO add your handling code here:
+                try {
+                  Clientes obj = new Clientes();
+
+                 obj.setId(Integer.parseInt(txtCodigoDados.getText()));
+                      ClientesDAO dao = new ClientesDAO();
+                      dao.excluirCliente(obj);
+
+            
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_btnExcluirCadCliActionPerformed
 
     private void btnEditarCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCadCliActionPerformed
         // TODO add your handling code here:
+        
+
+        try {
+
+            Clientes obj = new Clientes();
+            obj.setNome(txtNomeDados.getText());
+            obj.setRg(txtRgDados.getText());
+            obj.setCpf(txtCpfDados.getText());
+            obj.setEmail(txtEmailDados.getText());
+            obj.setTelefone(txtTelefonedados.getText());
+            obj.setCelular(txtCelularDados.getText());
+            obj.setCep(txtCepDados.getText());
+            obj.setEndereco(txtEnderecoDados.getText());
+            obj.setNumero(Integer.parseInt(txtNumeroDados.getText()));
+            obj.setComplemento(txtComplementoDados.getText());
+            obj.setBairro(txtBairroDados.getText());
+            obj.setCidade(txtCidadeDados.getText());
+            obj.setUf(comboUfDados.getSelectedItem().toString());
+            obj.setId(Integer.parseInt(txtCodigoDados.getText()));
+            
+            ClientesDAO dao = new ClientesDAO();
+            dao.alterarCliente(obj);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+
+        }
     }//GEN-LAST:event_btnEditarCadCliActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -604,6 +646,42 @@ public class telaCliente extends javax.swing.JFrame {
        listar();
         
     }//GEN-LAST:event_formWindowActivated
+
+    private void tabelaDeClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaDeClientesMouseClicked
+        // passar dados da tabela para o painel de Dados Pessoais
+        painelDaTabelaClientes.setSelectedIndex(0);
+        txtCodigoDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 0).toString());
+        
+        txtNomeDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 1).toString());
+        txtRgDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 2).toString());
+        txtCpfDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 3).toString());
+        txtEmailDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 4).toString());
+        txtTelefonedados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 5).toString());
+        txtCelularDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 6).toString());
+        txtCepDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 7).toString());
+        txtEnderecoDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 8).toString());
+        txtNumeroDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 9).toString());
+        txtComplementoDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 10).toString());
+        txtBairroDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 11).toString());
+        txtCidadeDados.setText(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 12).toString());
+        comboUfDados.setSelectedItem(tabelaDeClientes.getValueAt(tabelaDeClientes
+                .getSelectedRow(), 13).toString());
+        
+        
+    }//GEN-LAST:event_tabelaDeClientesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -665,8 +743,8 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel painelConsultaClientes;
     private javax.swing.JTabbedPane painelDaTabelaClientes;
     private javax.swing.JPanel painelDadosPessoais;
     private javax.swing.JTable tabelaDeClientes;
