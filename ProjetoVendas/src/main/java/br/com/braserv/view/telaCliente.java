@@ -99,7 +99,7 @@ public class telaCliente extends javax.swing.JFrame {
         txtNumeroDados = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtComplementoDados = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnPesquisaNomeDadosPessoais = new javax.swing.JButton();
         painelConsultaClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDeClientes = new javax.swing.JTable();
@@ -272,7 +272,7 @@ public class telaCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Pesquisar");
+        btnPesquisaNomeDadosPessoais.setText("Pesquisar");
 
         javax.swing.GroupLayout painelDadosPessoaisLayout = new javax.swing.GroupLayout(painelDadosPessoais);
         painelDadosPessoais.setLayout(painelDadosPessoaisLayout);
@@ -306,7 +306,7 @@ public class telaCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTelefonedados, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1))
+                            .addComponent(btnPesquisaNomeDadosPessoais))
                         .addContainerGap())
                     .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -364,7 +364,7 @@ public class telaCliente extends javax.swing.JFrame {
                 .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnPesquisaNomeDadosPessoais))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,8 +429,18 @@ public class telaCliente extends javax.swing.JFrame {
                 txtNomeConsultaClienteActionPerformed(evt);
             }
         });
+        txtNomeConsultaCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeConsultaClienteKeyPressed(evt);
+            }
+        });
 
         btnPesquisaCliente.setText("Pesquisar");
+        btnPesquisaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelConsultaClientesLayout = new javax.swing.GroupLayout(painelConsultaClientes);
         painelConsultaClientes.setLayout(painelConsultaClientesLayout);
@@ -683,6 +693,75 @@ public class telaCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tabelaDeClientesMouseClicked
 
+    private void btnPesquisaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaClienteActionPerformed
+        // Botao pesquisar na tabela de clientes
+        
+        String nome = "%"+txtNomeConsultaCliente.getText()+"%";
+         ClientesDAO dao = new ClientesDAO();
+    List<Clientes> lista = dao.buscaClientePorNome(nome);
+        
+    DefaultTableModel dados = (DefaultTableModel) tabelaDeClientes.getModel();
+    dados.setNumRows(0);
+    
+    
+    for(Clientes c: lista){
+        
+        dados.addRow(new Object[]{
+            c.getId(),
+            c.getNome(),
+            c.getRg(),
+            c.getCpf(),
+            c.getEmail(),
+            c.getTelefone(),
+            c.getCelular(),
+            c.getCep(),
+            c.getEndereco(),
+            c.getNumero(),
+            c.getComplemento(),
+            c.getBairro(),
+            c.getCidade(),
+            c.getUf()
+                
+            
+                
+        });
+    }
+    }//GEN-LAST:event_btnPesquisaClienteActionPerformed
+
+    private void txtNomeConsultaClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultaClienteKeyPressed
+        // Pesquisa enquanto digita
+         String nome = "%"+txtNomeConsultaCliente.getText()+"%";
+         ClientesDAO dao = new ClientesDAO();
+    List<Clientes> lista = dao.buscaClientePorNome(nome);
+        
+    DefaultTableModel dados = (DefaultTableModel) tabelaDeClientes.getModel();
+    dados.setNumRows(0);
+    
+    
+    for(Clientes c: lista){
+        
+        dados.addRow(new Object[]{
+            c.getId(),
+            c.getNome(),
+            c.getRg(),
+            c.getCpf(),
+            c.getEmail(),
+            c.getTelefone(),
+            c.getCelular(),
+            c.getCep(),
+            c.getEndereco(),
+            c.getNumero(),
+            c.getComplemento(),
+            c.getBairro(),
+            c.getCidade(),
+            c.getUf()
+                
+            
+                
+        });
+    }
+    }//GEN-LAST:event_txtNomeConsultaClienteKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -723,9 +802,9 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirCadCli;
     private javax.swing.JButton btnNovoCadCli;
     private javax.swing.JToggleButton btnPesquisaCliente;
+    private javax.swing.JButton btnPesquisaNomeDadosPessoais;
     private javax.swing.JButton btnSalvarCadCli;
     private javax.swing.JComboBox<String> comboUfDados;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
