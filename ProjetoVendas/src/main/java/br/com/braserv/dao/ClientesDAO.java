@@ -7,6 +7,7 @@ package br.com.braserv.dao;
 
 import br.com.braserv.jdbc.ModuloConexao;
 import br.com.braserv.model.Clientes;
+import br.com.braserv.model.WebServiceCep;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -294,6 +295,34 @@ public class ClientesDAO {
             
         }
     }
+    
+    
+    
+    
+    
+	
+	  public Clientes buscaCep(String cep) {
+       
+              WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+       
+
+        Clientes obj = new Clientes();
+
+        if (webServiceCep.wasSuccessful()) {
+            obj.setEndereco(webServiceCep.getLogradouroFull());
+            obj.setCidade(webServiceCep.getCidade());
+            obj.setBairro(webServiceCep.getBairro());
+            obj.setUf(webServiceCep.getUf());
+            return obj;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+            return null;
+        }
+
+    }
+	
+	
     
     
     
