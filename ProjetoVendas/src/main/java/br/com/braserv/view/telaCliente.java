@@ -8,6 +8,7 @@ package br.com.braserv.view;
 import br.com.braserv.dao.ClientesDAO;
 import br.com.braserv.model.Clientes;
 import br.com.braserv.model.utilitarios;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -158,6 +159,11 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel3.setText("Nome:");
 
         txtNomeDados.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtNomeDados.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeDadosKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Email:");
@@ -193,6 +199,16 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel7.setText("CEP: ");
 
         txtCepDados.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtCepDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCepDadosActionPerformed(evt);
+            }
+        });
+        txtCepDados.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCepDadosKeyPressed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setText("Endereço:");
@@ -516,7 +532,7 @@ public class telaCliente extends javax.swing.JFrame {
                 .addComponent(btnEditarCadCli)
                 .addGap(18, 18, 18)
                 .addComponent(btnExcluirCadCli)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -798,6 +814,63 @@ public class telaCliente extends javax.swing.JFrame {
         }
            
     }//GEN-LAST:event_btnPesquisaNomeDadosPessoaisActionPerformed
+
+    private void txtCepDadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCepDadosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+         Clientes obj =  new Clientes();
+         ClientesDAO dao = new ClientesDAO();
+         obj = dao.buscaCep(txtCepDados.getText());
+         
+         txtEnderecoDados.setText(obj.getEndereco());
+         txtBairroDados.setText(obj.getBairro());
+         txtCidadeDados.setText(obj.getCidade());
+         comboUfDados.setSelectedItem(obj.getUf());               
+        
+         
+     }
+        
+        
+    }//GEN-LAST:event_txtCepDadosKeyPressed
+
+    private void txtCepDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepDadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepDadosActionPerformed
+
+    private void txtNomeDadosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeDadosKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+        try {
+            String nome = txtNomeDados.getText();
+            Clientes obj = new Clientes();
+            ClientesDAO dao = new ClientesDAO();
+            
+            obj = dao.consultaPorNome(nome);
+            if(obj.getNome() != null){
+            txtCodigoDados.setText(String.valueOf(obj.getId()));
+            
+               txtNomeDados.setText(obj.getNome());
+        txtRgDados.setText(obj.getRg());
+        txtCpfDados.setText(obj.getCpf());
+        txtEmailDados.setText(obj.getEmail());
+        txtTelefonedados.setText(obj.getTelefone());
+        txtCelularDados.setText(obj.getCelular());
+        txtCepDados.setText(obj.getCep());
+        txtEnderecoDados.setText(obj.getEndereco());
+        txtNumeroDados.setText(Integer.toString(obj.getNumero()));
+        txtComplementoDados.setText(obj.getComplemento());
+        txtBairroDados.setText(obj.getBairro());
+        txtCidadeDados.setText(obj.getCidade());
+        comboUfDados.setSelectedItem(obj.getUf());
+            }else{
+            JOptionPane.showMessageDialog(null, "CLIENTE NÃO ENCONTRADO");
+            
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+       
+       }
+    }//GEN-LAST:event_txtNomeDadosKeyPressed
 
     /**
      * @param args the command line arguments
