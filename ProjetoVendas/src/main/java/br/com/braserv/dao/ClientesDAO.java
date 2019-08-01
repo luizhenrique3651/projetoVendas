@@ -76,7 +76,6 @@ public class ClientesDAO {
     
     
     
-    
     public void alterarCliente(Clientes obj){
         
            try {
@@ -151,7 +150,6 @@ public class ClientesDAO {
         
         }
     }
-    
     
     
   
@@ -247,6 +245,7 @@ public class ClientesDAO {
         }
     
     }
+    
     
     
     

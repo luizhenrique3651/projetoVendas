@@ -158,11 +158,6 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel3.setText("Nome:");
 
         txtNomeDados.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtNomeDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeDadosActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Email:");
@@ -546,10 +541,6 @@ public class telaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoDadosActionPerformed
 
-    private void txtNomeDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeDadosActionPerformed
-
     private void txtEmailDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailDadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailDadosActionPerformed
@@ -774,7 +765,38 @@ public class telaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeConsultaClienteKeyPressed
 
     private void btnPesquisaNomeDadosPessoaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaNomeDadosPessoaisActionPerformed
-        // TODO add your handling code here:
+        // Pesquisar na tela dados pessoais
+        try {
+            String nome = txtNomeDados.getText();
+            Clientes obj = new Clientes();
+            ClientesDAO dao = new ClientesDAO();
+            
+            obj = dao.consultaPorNome(nome);
+            if(obj.getNome() != null){
+            txtCodigoDados.setText(String.valueOf(obj.getId()));
+            
+               txtNomeDados.setText(obj.getNome());
+        txtRgDados.setText(obj.getRg());
+        txtCpfDados.setText(obj.getCpf());
+        txtEmailDados.setText(obj.getEmail());
+        txtTelefonedados.setText(obj.getTelefone());
+        txtCelularDados.setText(obj.getCelular());
+        txtCepDados.setText(obj.getCep());
+        txtEnderecoDados.setText(obj.getEndereco());
+        txtNumeroDados.setText(Integer.toString(obj.getNumero()));
+        txtComplementoDados.setText(obj.getComplemento());
+        txtBairroDados.setText(obj.getBairro());
+        txtCidadeDados.setText(obj.getCidade());
+        comboUfDados.setSelectedItem(obj.getUf());
+            }else{
+            JOptionPane.showMessageDialog(null, "CLIENTE NÃO ENCONTRADO");
+            
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+           
     }//GEN-LAST:event_btnPesquisaNomeDadosPessoaisActionPerformed
 
     /**
