@@ -7,6 +7,7 @@ package br.com.braserv.view;
 
 import br.com.braserv.dao.ClientesDAO;
 import br.com.braserv.model.Clientes;
+import br.com.braserv.model.utilitarios;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -145,6 +146,7 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Codigo: ");
 
+        txtCodigoDados.setEditable(false);
         txtCodigoDados.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtCodigoDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +358,7 @@ public class telaCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCpfDados, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(162, 162, 162))))))
+                                .addContainerGap(162, Short.MAX_VALUE))))))
         );
         painelDadosPessoaisLayout.setVerticalGroup(
             painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,8 +533,8 @@ public class telaCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarCadCli)
                     .addComponent(btnExcluirCadCli)
-                    .addComponent(btnNovoCadCli)
-                    .addComponent(btnSalvarCadCli))
+                    .addComponent(btnSalvarCadCli)
+                    .addComponent(btnNovoCadCli))
                 .addGap(37, 37, 37))
         );
 
@@ -598,6 +600,8 @@ public class telaCliente extends javax.swing.JFrame {
             
             ClientesDAO dao = new ClientesDAO();
             dao.cadastrarCliente(obj);
+                        new utilitarios().LimpaTela(painelDadosPessoais);
+
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
@@ -618,6 +622,7 @@ public class telaCliente extends javax.swing.JFrame {
                  obj.setId(Integer.parseInt(txtCodigoDados.getText()));
                       ClientesDAO dao = new ClientesDAO();
                       dao.excluirCliente(obj);
+            new utilitarios().LimpaTela(painelDadosPessoais);
 
             
         } catch (Exception e) {
@@ -649,6 +654,7 @@ public class telaCliente extends javax.swing.JFrame {
             
             ClientesDAO dao = new ClientesDAO();
             dao.alterarCliente(obj);
+            new utilitarios().LimpaTela(painelDadosPessoais);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
