@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.braserv.view;
+package br.com.devworks.view;
 
-import br.com.braserv.dao.ClientesDAO;
-import br.com.braserv.model.Clientes;
-import br.com.braserv.model.utilitarios;
+import br.com.devworks.dao.ClientesDAO;
+import br.com.devworks.model.Clientes;
+import br.com.devworks.model.utilitarios;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;

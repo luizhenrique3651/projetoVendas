@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.braserv.model;
+package br.com.devworks.model;
 
 import java.awt.Component;
 import javax.swing.JPanel;

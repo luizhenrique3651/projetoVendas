@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.braserv.dao;
+package br.com.devworks.dao;
 
-import br.com.braserv.jdbc.ModuloConexao;
-import br.com.braserv.model.Clientes;
-import br.com.braserv.model.WebServiceCep;
+import br.com.devworks.jdbc.ModuloConexao;
+import br.com.devworks.model.Clientes;
+import br.com.devworks.model.WebServiceCep;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

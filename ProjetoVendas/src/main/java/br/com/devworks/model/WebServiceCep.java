@@ -1,4 +1,4 @@
-package br.com.braserv.model;
+package br.com.devworks.model;
 
 import java.net.MalformedURLException;
 import java.net.URL;

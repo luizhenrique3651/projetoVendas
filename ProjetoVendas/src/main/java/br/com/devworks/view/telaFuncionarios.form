@@ -290,14 +290,16 @@
                                   <Component id="txtNumeroDados" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel17" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="txtSenhaFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel19" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="txtCargoFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="comboNivelAcesso" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel17" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="txtSenhaFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
