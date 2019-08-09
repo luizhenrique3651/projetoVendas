@@ -117,7 +117,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDeFuncionarios = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        txtNomeConsultaCliente = new javax.swing.JTextField();
+        txtNomeConsultaFuncionario = new javax.swing.JTextField();
         btnPesquisaCliente = new javax.swing.JToggleButton();
         btnSalvarCadFuncio = new javax.swing.JButton();
         btnNovoCadCli = new javax.swing.JButton();
@@ -503,14 +503,14 @@ public class telaFuncionarios extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setText("Nome:");
 
-        txtNomeConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeConsultaFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeConsultaClienteActionPerformed(evt);
+                txtNomeConsultaFuncionarioActionPerformed(evt);
             }
         });
-        txtNomeConsultaCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNomeConsultaFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNomeConsultaClienteKeyPressed(evt);
+                txtNomeConsultaFuncionarioKeyPressed(evt);
             }
         });
 
@@ -529,7 +529,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomeConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomeConsultaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(888, Short.MAX_VALUE))
@@ -542,7 +542,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
                 .addGroup(painelConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel14)
                     .addGroup(painelConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNomeConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNomeConsultaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnPesquisaCliente)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -634,9 +634,9 @@ public class telaFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCidadeDadosActionPerformed
 
-    private void txtNomeConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeConsultaClienteActionPerformed
+    private void txtNomeConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeConsultaFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeConsultaClienteActionPerformed
+    }//GEN-LAST:event_txtNomeConsultaFuncionarioActionPerformed
 
     private void txtNumeroDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDadosActionPerformed
         // TODO add your handling code here:
@@ -784,7 +784,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
     private void btnPesquisaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaClienteActionPerformed
         // Botao pesquisar na tabela de clientes
         
-        String nome = "%"+txtNomeConsultaCliente.getText()+"%";
+        String nome = "%"+txtNomeConsultaFuncionario.getText()+"%";
          ClientesDAO dao = new ClientesDAO();
     List<Clientes> lista = dao.buscaClientePorNome(nome);
         
@@ -816,11 +816,11 @@ public class telaFuncionarios extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnPesquisaClienteActionPerformed
 
-    private void txtNomeConsultaClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultaClienteKeyPressed
+    private void txtNomeConsultaFuncionarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeConsultaFuncionarioKeyPressed
         // Pesquisa enquanto digita
-         String nome = "%"+txtNomeConsultaCliente.getText()+"%";
-         ClientesDAO dao = new ClientesDAO();
-    List<Clientes> lista = dao.buscaClientePorNome(nome);
+         String nome = "%"+txtNomeConsultaFuncionario.getText()+"%";
+         FuncionariosDAO dao = new FuncionariosDAO();
+    List<Funcionarios> lista = dao.buscaFuncionarioPorNome(nome);
         
     DefaultTableModel dados = (DefaultTableModel) tabelaDeFuncionarios.getModel();
     dados.setNumRows(0);
@@ -848,7 +848,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
                 
         });
     }
-    }//GEN-LAST:event_txtNomeConsultaClienteKeyPressed
+    }//GEN-LAST:event_txtNomeConsultaFuncionarioKeyPressed
 
     private void btnPesquisaNomeDadosPessoaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaNomeDadosPessoaisActionPerformed
         // Pesquisar na tela dados pessoais
@@ -1032,7 +1032,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCpfDados;
     private javax.swing.JTextField txtEmailDados;
     private javax.swing.JTextField txtEnderecoDados;
-    private javax.swing.JTextField txtNomeConsultaCliente;
+    private javax.swing.JTextField txtNomeConsultaFuncionario;
     private javax.swing.JTextField txtNomeDados;
     private javax.swing.JTextField txtNumeroDados;
     private javax.swing.JFormattedTextField txtRgDados;
