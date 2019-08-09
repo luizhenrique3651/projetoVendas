@@ -34,11 +34,11 @@
               <EmptySpace min="-2" pref="517" max="-2" attributes="0"/>
               <Component id="btnNovoCadCli" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnSalvarCadCli" min="-2" max="-2" attributes="0"/>
+              <Component id="btnSalvarCadFuncio" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnEditarCadCli" min="-2" max="-2" attributes="0"/>
+              <Component id="btnEditarCadFuncio" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnExcluirCadCli" min="-2" max="-2" attributes="0"/>
+              <Component id="btnExcluirCadFuncio" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -51,9 +51,9 @@
               <Component id="painelDaTabelaClientes" min="-2" pref="345" max="-2" attributes="0"/>
               <EmptySpace pref="49" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnEditarCadCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnExcluirCadCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSalvarCadCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditarCadFuncio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExcluirCadFuncio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSalvarCadFuncio" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnNovoCadCli" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -852,12 +852,12 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnSalvarCadCli">
+    <Component class="javax.swing.JButton" name="btnSalvarCadFuncio">
       <Properties>
         <Property name="text" type="java.lang.String" value="SALVAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarCadCliActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarCadFuncioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnNovoCadCli">
@@ -868,20 +868,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoCadCliActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnExcluirCadCli">
+    <Component class="javax.swing.JButton" name="btnExcluirCadFuncio">
       <Properties>
         <Property name="text" type="java.lang.String" value="EXCLUIR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirCadCliActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirCadFuncioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEditarCadCli">
+    <Component class="javax.swing.JButton" name="btnEditarCadFuncio">
       <Properties>
         <Property name="text" type="java.lang.String" value="EDITAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarCadCliActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarCadFuncioActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

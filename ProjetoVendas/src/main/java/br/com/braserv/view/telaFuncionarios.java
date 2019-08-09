@@ -6,7 +6,9 @@
 package br.com.braserv.view;
 
 import br.com.braserv.dao.ClientesDAO;
+import br.com.braserv.dao.FuncionariosDAO;
 import br.com.braserv.model.Clientes;
+import br.com.braserv.model.Funcionarios;
 import br.com.braserv.model.utilitarios;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -22,14 +24,14 @@ public class telaFuncionarios extends javax.swing.JFrame {
     //listando dados da tabela
     public void listar(){
     
-    ClientesDAO dao = new ClientesDAO();
-    List<Clientes> lista = dao.listarClientes();
+    FuncionariosDAO dao = new FuncionariosDAO();
+    List<Funcionarios> lista = dao.listarFuncionarios();
         
     DefaultTableModel dados = (DefaultTableModel) tabelaDeFuncionarios.getModel();
     dados.setNumRows(0);
     
     
-    for(Clientes c: lista){
+    for(Funcionarios c: lista){
         
         dados.addRow(new Object[]{
             c.getId(),
@@ -37,6 +39,9 @@ public class telaFuncionarios extends javax.swing.JFrame {
             c.getRg(),
             c.getCpf(),
             c.getEmail(),
+            c.getSenha(),
+            c.getCargo(),
+            c.getNivel_acesso(),
             c.getTelefone(),
             c.getCelular(),
             c.getCep(),
@@ -114,10 +119,10 @@ public class telaFuncionarios extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtNomeConsultaCliente = new javax.swing.JTextField();
         btnPesquisaCliente = new javax.swing.JToggleButton();
-        btnSalvarCadCli = new javax.swing.JButton();
+        btnSalvarCadFuncio = new javax.swing.JButton();
         btnNovoCadCli = new javax.swing.JButton();
-        btnExcluirCadCli = new javax.swing.JButton();
-        btnEditarCadCli = new javax.swing.JButton();
+        btnExcluirCadFuncio = new javax.swing.JButton();
+        btnEditarCadFuncio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -545,10 +550,10 @@ public class telaFuncionarios extends javax.swing.JFrame {
 
         painelDaTabelaClientes.addTab("Consulta de Funcionários", painelConsultaClientes);
 
-        btnSalvarCadCli.setText("SALVAR");
-        btnSalvarCadCli.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarCadFuncio.setText("SALVAR");
+        btnSalvarCadFuncio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarCadCliActionPerformed(evt);
+                btnSalvarCadFuncioActionPerformed(evt);
             }
         });
 
@@ -559,17 +564,17 @@ public class telaFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        btnExcluirCadCli.setText("EXCLUIR");
-        btnExcluirCadCli.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluirCadFuncio.setText("EXCLUIR");
+        btnExcluirCadFuncio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirCadCliActionPerformed(evt);
+                btnExcluirCadFuncioActionPerformed(evt);
             }
         });
 
-        btnEditarCadCli.setText("EDITAR");
-        btnEditarCadCli.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarCadFuncio.setText("EDITAR");
+        btnEditarCadFuncio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarCadCliActionPerformed(evt);
+                btnEditarCadFuncioActionPerformed(evt);
             }
         });
 
@@ -583,11 +588,11 @@ public class telaFuncionarios extends javax.swing.JFrame {
                 .addGap(517, 517, 517)
                 .addComponent(btnNovoCadCli)
                 .addGap(18, 18, 18)
-                .addComponent(btnSalvarCadCli)
+                .addComponent(btnSalvarCadFuncio)
                 .addGap(18, 18, 18)
-                .addComponent(btnEditarCadCli)
+                .addComponent(btnEditarCadFuncio)
                 .addGap(18, 18, 18)
-                .addComponent(btnExcluirCadCli)
+                .addComponent(btnExcluirCadFuncio)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -598,9 +603,9 @@ public class telaFuncionarios extends javax.swing.JFrame {
                 .addComponent(painelDaTabelaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarCadCli)
-                    .addComponent(btnExcluirCadCli)
-                    .addComponent(btnSalvarCadCli)
+                    .addComponent(btnEditarCadFuncio)
+                    .addComponent(btnExcluirCadFuncio)
+                    .addComponent(btnSalvarCadFuncio)
                     .addComponent(btnNovoCadCli))
                 .addGap(37, 37, 37))
         );
@@ -641,16 +646,19 @@ public class telaFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtComplementoDadosActionPerformed
 
-    private void btnSalvarCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadCliActionPerformed
+    private void btnSalvarCadFuncioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadFuncioActionPerformed
         // TODO add your handling code here:
 
         try {
 
-            Clientes obj = new Clientes();
+            Funcionarios obj = new Funcionarios();
             obj.setNome(txtNomeDados.getText());
             obj.setRg(txtRgDados.getText());
             obj.setCpf(txtCpfDados.getText());
             obj.setEmail(txtEmailDados.getText());
+            obj.setSenha(txtSenhaFuncionario.getText());
+            obj.setCargo(txtCargoFuncionario.getText());
+            obj.setNivel_acesso((String) comboNivelAcesso.getSelectedItem());
             obj.setTelefone(txtTelefonedados.getText());
             obj.setCelular(txtCelularDados.getText());
             obj.setCep(txtCepDados.getText());
@@ -661,8 +669,8 @@ public class telaFuncionarios extends javax.swing.JFrame {
             obj.setCidade(txtCidadeDados.getText());
             obj.setUf(comboUfDados.getSelectedItem().toString());
             
-            ClientesDAO dao = new ClientesDAO();
-            dao.cadastrarCliente(obj);
+            FuncionariosDAO dao = new FuncionariosDAO();
+            dao.cadastrarFuncionarios(obj);
                         new utilitarios().LimpaTela(painelDadosPessoais);
 
 
@@ -672,13 +680,13 @@ public class telaFuncionarios extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btnSalvarCadCliActionPerformed
+    }//GEN-LAST:event_btnSalvarCadFuncioActionPerformed
 
     private void btnNovoCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoCadCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNovoCadCliActionPerformed
 
-    private void btnExcluirCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCadCliActionPerformed
+    private void btnExcluirCadFuncioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCadFuncioActionPerformed
                 try {
                   Clientes obj = new Clientes();
 
@@ -691,9 +699,9 @@ public class telaFuncionarios extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-    }//GEN-LAST:event_btnExcluirCadCliActionPerformed
+    }//GEN-LAST:event_btnExcluirCadFuncioActionPerformed
 
-    private void btnEditarCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCadCliActionPerformed
+    private void btnEditarCadFuncioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCadFuncioActionPerformed
         // TODO add your handling code here:
         
 
@@ -723,7 +731,7 @@ public class telaFuncionarios extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, e);
 
         }
-    }//GEN-LAST:event_btnEditarCadCliActionPerformed
+    }//GEN-LAST:event_btnEditarCadFuncioActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
        ///caregar a lista
@@ -745,24 +753,30 @@ public class telaFuncionarios extends javax.swing.JFrame {
                 .getSelectedRow(), 3).toString());
         txtEmailDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 4).toString());
-        txtTelefonedados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+          txtSenhaFuncionario.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 5).toString());
-        txtCelularDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+            txtCargoFuncionario.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 6).toString());
-        txtCepDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+              comboNivelAcesso.setSelectedItem(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 7).toString());
-        txtEnderecoDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+        txtTelefonedados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 8).toString());
-        txtNumeroDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+        txtCelularDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 9).toString());
-        txtComplementoDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+        txtCepDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 10).toString());
-        txtBairroDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+        txtEnderecoDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 11).toString());
-        txtCidadeDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+        txtNumeroDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 12).toString());
-        comboUfDados.setSelectedItem(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+        txtComplementoDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 13).toString());
+        txtBairroDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+                .getSelectedRow(), 14).toString());
+        txtCidadeDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+                .getSelectedRow(), 15).toString());
+        comboUfDados.setSelectedItem(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
+                .getSelectedRow(), 16).toString());
         
         
     }//GEN-LAST:event_tabelaDeFuncionariosMouseClicked
@@ -975,12 +989,12 @@ public class telaFuncionarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditarCadCli;
-    private javax.swing.JButton btnExcluirCadCli;
+    private javax.swing.JButton btnEditarCadFuncio;
+    private javax.swing.JButton btnExcluirCadFuncio;
     private javax.swing.JButton btnNovoCadCli;
     private javax.swing.JToggleButton btnPesquisaCliente;
     private javax.swing.JButton btnPesquisaNomeDadosPessoais;
-    private javax.swing.JButton btnSalvarCadCli;
+    private javax.swing.JButton btnSalvarCadFuncio;
     private javax.swing.JComboBox<String> comboNivelAcesso;
     private javax.swing.JComboBox<String> comboUfDados;
     private javax.swing.JLabel jLabel1;
