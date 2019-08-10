@@ -689,11 +689,11 @@ public class telaFuncionarios extends javax.swing.JFrame {
 
     private void btnExcluirCadFuncioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCadFuncioActionPerformed
                 try {
-                  Clientes obj = new Clientes();
+                  Funcionarios obj = new Funcionarios();
 
                  obj.setId(Integer.parseInt(txtCodigoDados.getText()));
-                      ClientesDAO dao = new ClientesDAO();
-                      dao.excluirCliente(obj);
+                      FuncionariosDAO dao = new FuncionariosDAO();
+                      dao.excluirFuncionario(obj);
             new utilitarios().LimpaTela(painelDadosPessoais);
 
             
