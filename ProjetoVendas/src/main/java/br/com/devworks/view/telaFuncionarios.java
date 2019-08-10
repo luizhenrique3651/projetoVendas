@@ -708,11 +708,14 @@ public class telaFuncionarios extends javax.swing.JFrame {
 
         try {
 
-            Clientes obj = new Clientes();
+            Funcionarios obj = new Funcionarios();
             obj.setNome(txtNomeDados.getText());
             obj.setRg(txtRgDados.getText());
             obj.setCpf(txtCpfDados.getText());
             obj.setEmail(txtEmailDados.getText());
+            obj.setSenha(txtSenhaFuncionario.getText());
+            obj.setCargo(txtCargoFuncionario.getText());
+            obj.setNivel_acesso((String) comboNivelAcesso.getSelectedItem());
             obj.setTelefone(txtTelefonedados.getText());
             obj.setCelular(txtCelularDados.getText());
             obj.setCep(txtCepDados.getText());
@@ -724,8 +727,8 @@ public class telaFuncionarios extends javax.swing.JFrame {
             obj.setUf(comboUfDados.getSelectedItem().toString());
             obj.setId(Integer.parseInt(txtCodigoDados.getText()));
             
-            ClientesDAO dao = new ClientesDAO();
-            dao.alterarCliente(obj);
+            FuncionariosDAO dao = new FuncionariosDAO();
+            dao.alterarFuncionario(obj);
             new utilitarios().LimpaTela(painelDadosPessoais);
 
         } catch (Exception e) {
@@ -748,34 +751,49 @@ public class telaFuncionarios extends javax.swing.JFrame {
         
         txtNomeDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 1).toString());
+        
         txtRgDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 2).toString());
+        
         txtCpfDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 3).toString());
+        
         txtEmailDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 4).toString());
+        
           txtSenhaFuncionario.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 5).toString());
+          
             txtCargoFuncionario.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 6).toString());
+            
               comboNivelAcesso.setSelectedItem(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 7).toString());
+              
         txtTelefonedados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 8).toString());
+        
         txtCelularDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 9).toString());
+        
         txtCepDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 10).toString());
+        
         txtEnderecoDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 11).toString());
+        
         txtNumeroDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 12).toString());
+        
         txtComplementoDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 13).toString());
+        
         txtBairroDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 14).toString());
+        
         txtCidadeDados.setText(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 15).toString());
+        
         comboUfDados.setSelectedItem(tabelaDeFuncionarios.getValueAt(tabelaDeFuncionarios
                 .getSelectedRow(), 16).toString());
         
